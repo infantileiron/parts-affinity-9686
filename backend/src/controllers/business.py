@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from src.models.entities import MiningRun,AssociationRule,Kit
+from src.models.entities import MiningRun,AssociationRule,Kit,KittingPlan
 def ensure_run(s,i):
  r=s.get(MiningRun,i)
  if not r:raise HTTPException(404,'挖掘批次不存在')
@@ -11,4 +11,8 @@ def ensure_rule(s,i):
 def ensure_kit(s,i):
  r=s.get(Kit,i)
  if not r:raise HTTPException(404,'备件包不存在')
+ return r
+def ensure_plan(s,i):
+ r=s.get(KittingPlan,i)
+ if not r:raise HTTPException(404,'联备方案不存在')
  return r

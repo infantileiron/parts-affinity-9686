@@ -28,3 +28,10 @@ class KitEdit(BaseModel):
  note:str=Field(min_length=8,max_length=2000)
 class RuleOutput(BaseModel):
  id:int;run_id:int;antecedent:list[str];consequent:list[str];support:float;confidence:float;lift:float;count:int
+class PlanTrial(BaseModel):
+ name:str=Field(min_length=2,max_length=100)
+ job_ids:list[int]=Field(min_length=1,max_length=500)
+ kit_ids:list[int]|None=Field(default=None,max_length=200)
+ carry_limit:int=Field(ge=1,le=64)
+class PlanAction(BaseModel):
+ idempotency_key:str|None=Field(default=None,min_length=8,max_length=64)
